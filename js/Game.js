@@ -11,7 +11,7 @@ class Game{
     }
 
     update(state) {
-        database.ref('/').update({
+            database.ref('/').update({
             gameState: state
         });
     }
@@ -64,7 +64,7 @@ class Game{
             // the players on the screen
            
             textSize(25)
-            fill("green")
+            fill("red")
             text("Player 1 :"+allPlayers.player1.score,50,50)
             
             text("Player 2 :" + allPlayers.player2.score,50,100)
@@ -113,25 +113,26 @@ class Game{
         // Add code to destroy fruits, calculate scores and
         // update the scores to the database
         
-
-
         // Add code for game end condition
         if(player.score>=10){
-            this.end()
+            this.end();
         }
 
 
     }
 
+    // Add code to update game state and display Game Over
     end(){
-        game.update(2)
-        clear()
-        fill("blue")
-        textSize(100)
-        text("Game over",350,300)
-       // Add code to update game state and display Game Over
-
-
-       
+        for(var plr in allPlayers){
+            textSize(25)
+            fill("red")
+            text("Player 1 :"+allPlayers.player1.score,50,50)            
+            text("Player 2 :" + allPlayers.player2.score,50,100)
+        }
+        game.update(2);        
+        player.index = null
+        fill("orange")
+        textSize(100);
+        text("Game over",350,300);
     }
 }
